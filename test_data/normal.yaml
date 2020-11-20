@@ -1,0 +1,10 @@
+jobs:
+  - cron: '10 * * * * *'
+    from:
+      action: 'from_action_url'
+      params:
+        apikey: 'key'
+    to:
+      action: 'from_action_url'
+      params:
+        apikey: 'key'
