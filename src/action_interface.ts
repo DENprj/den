@@ -14,13 +14,13 @@ interface Response {
   [key: string]: Param;
 }
 
-export interface Action<T, R> {
+export interface From<T, R> {
   definitionOfRequest: Params;
   definitionOfResponse: Response;
   run: (param: T) => R | Promise<R>;
 }
 
-export interface Reaction<T> {
+export interface To<T> {
   definitionOfRequest: Params;
   run: (param: T) => void;
 }

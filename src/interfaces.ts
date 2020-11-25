@@ -2,8 +2,10 @@ export interface Settings {
   jobs: Job[]
 }
 
+type Primitive = undefined | string | number | null
+
 export interface PlaneObject {
-  [k: string]: string | number | PlaneObject | (string | number | PlaneObject)[]
+  [k: string]: Primitive | PlaneObject | (Primitive | PlaneObject)[]
 }
 
 export interface ActionSettings {
