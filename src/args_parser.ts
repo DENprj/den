@@ -22,6 +22,6 @@ export const parseArgs = (args: string[]): LoadingConfig => {
       }
    }
    return {
-     jobFolderPath: '~/.orderly'
+     jobFolderPath: '~/.den'
    }
 }

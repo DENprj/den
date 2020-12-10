@@ -22,7 +22,12 @@ const buildJobScheduler = async (setting: Settings) => {
     return () => {
       suchedule(() => {
         from()
-          .then(to)
+          .then(result => {
+            if (result !== null || result !== undefined) {
+              return to(result)
+            }
+            return null
+          })
           .then(() => {
             console.log('done job')
           })

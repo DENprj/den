@@ -1,0 +1,39 @@
+import { From } from '../src/action_interface.ts';
+import { PlaneObject } from "../src/interfaces.ts";
+
+interface Req extends PlaneObject {
+  key: string
+}
+
+interface Res extends PlaneObject {
+  result: boolean;
+  message: string
+}
+
+const from: From<Req, Res> = {
+  request : {
+    key: {
+      type: 'string',
+      description: 'key of request'
+    }
+  },
+  response: {
+    result: {
+      type: 'boolean',
+      description: 'result of boolean'
+    },
+    message: {
+      type: 'string',
+      description: 'meesage of result'
+    }
+  },
+  async run(param){
+    return {
+      result: true,
+      message: `this is ${param.key}`
+    }
+  }
+}
+
+
+export default from

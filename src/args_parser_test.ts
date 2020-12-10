@@ -3,7 +3,7 @@ import { parseArgs } from "./args_parser.ts"
 
 Deno.test('default parse', () => {
   const result = parseArgs([])
-  assertEquals(result.jobFolderPath, '~/.orderly') 
+  assertEquals(result.jobFolderPath, '~/.den') 
 })
 
 Deno.test('if sat yaml file path,  defined file path ', () => {

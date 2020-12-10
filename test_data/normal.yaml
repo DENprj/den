@@ -1,10 +1,10 @@
 jobs:
-  - cron: '10 * * * * *'
+  - cron: '* * * * * *'
     from:
-      action: 'from_action_url'
+      use: '../test_data/test_from.ts'
       params:
-        apikey: 'key'
+        key: 'my key'
     to:
-      action: 'from_action_url'
+      use: '../test_data/test_to.ts'
       params:
-        apikey: 'key'
+        message: '{message} + {result}'

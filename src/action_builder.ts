@@ -5,9 +5,9 @@ import convert from "./param_converter.ts"
 export const buildFrom = async (actionSettings: ActionSettings)  => {
   const url = actionSettings.use
   const mod = await import(url)
-  const from = mod.default as From<unknown, unknown>
+  const from = mod.default as From<any, any>
 
-  const definition = from.definitionOfRequest
+  const definition = from.request
   const requestEntries = Object.entries(actionSettings.params)
 
   // validation
@@ -34,9 +34,9 @@ export const buildFrom = async (actionSettings: ActionSettings)  => {
 export const buildTo = async (actionSettings: ActionSettings)  => {
   const url = actionSettings.use
   const mod = await import(url)
-  const to = mod.default as To<unknown>
+  const to = mod.default as To<PlaneObject>
 
-  const definition = to.definitionOfRequest
+  const definition = to.request
   const requestEntries = Object.entries(actionSettings.params)
 
   Object.entries(definition).forEach(([defKey, { validator, type }]) => {

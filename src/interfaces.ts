@@ -2,7 +2,7 @@ export interface Settings {
   jobs: Job[]
 }
 
-type Primitive = undefined | string | number | null
+type Primitive = undefined | string | number | boolean | null
 
 export interface PlaneObject {
   [k: string]: Primitive | PlaneObject | (Primitive | PlaneObject)[]

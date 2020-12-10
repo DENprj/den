@@ -1,27 +1,27 @@
-
-interface Params {
-  [key: string]: Param & {
-    validator?: <T>(p: T) => boolean
-  };
-}
+import { PlaneObject } from "./interfaces.ts";
 
 interface Param {
   description: string;
-  type: 'boolean' | 'number' | 'string' | 'object'
+  type: 'string' | 'boolean' | 'number' | 'object';
 }
 
-interface Response {
-  [key: string]: Param;
+export type Response<T extends PlaneObject> = {
+  [K in keyof T]: Param;
 }
 
-export interface From<T, R> {
-  definitionOfRequest: Params;
-  definitionOfResponse: Response;
+export type  Request<T extends PlaneObject> =  {
+  [K in keyof T]: Param & {
+    validator?: (p: T[K]) => boolean
+  };
+}
+
+export interface From<T extends PlaneObject, R extends PlaneObject> {
+  request: Request<T>;
+  response: Response<R>;
   run: (param: T) => R | Promise<R>;
 }
 
-export interface To<T> {
-  definitionOfRequest: Params;
+export interface To<T extends PlaneObject> {
+  request: Request<T>;
   run: (param: T) => void;
 }
-
