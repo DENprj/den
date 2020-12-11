@@ -1,5 +1,5 @@
-import { From, To } from "./action_interface.ts"
-import { ActionSettings, PlaneObject } from './interfaces.ts'
+import { From, PlaneObject, To } from "./action_interface.ts"
+import { ActionSettings } from './interfaces.ts'
 import convert from "./param_converter.ts"
 
 export const buildFrom = async (actionSettings: ActionSettings)  => {
@@ -39,7 +39,7 @@ export const buildTo = async (actionSettings: ActionSettings)  => {
   const definition = to.request
   const requestEntries = Object.entries(actionSettings.params)
 
-  Object.entries(definition).forEach(([defKey, { validator, type }]) => {
+  Object.entries(definition).forEach(([defKey, { validator, type, optional }]) => {
     const valid = requestEntries.some(([key, v]) => {
       if (defKey === key && typeof(v) === type) {
         if (validator) {
@@ -47,7 +47,7 @@ export const buildTo = async (actionSettings: ActionSettings)  => {
         }
         return true
       }
-      return false
+      return !!optional
     })
     if (!valid) {
       throw new Error(`${defKey} is not defined`)

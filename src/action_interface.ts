@@ -1,8 +1,13 @@
-import { PlaneObject } from "./interfaces.ts";
+type Primitive = undefined | string | number | boolean | null
+
+export interface PlaneObject {
+  [k: string]: Primitive | PlaneObject | (Primitive | PlaneObject)[]
+}
 
 interface Param {
   description: string;
   type: 'string' | 'boolean' | 'number' | 'object';
+  optional?: boolean
 }
 
 export type Response<T extends PlaneObject> = {
