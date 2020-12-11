@@ -1,4 +1,4 @@
-import { PlaneObject } from "./action_interface.ts";
+import { PlaneObject } from "./action_interfaces.ts";
 
 export interface Settings {
   jobs: Job[]
