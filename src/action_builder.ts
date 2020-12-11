@@ -1,4 +1,4 @@
-import { From, PlaneObject, To } from "./action_interface.ts"
+import { From, PlaneObject, To, Primitive } from "./action_interfaces.ts"
 import { ActionSettings } from './interfaces.ts'
 import convert from "./param_converter.ts"
 
@@ -43,7 +43,7 @@ export const buildTo = async (actionSettings: ActionSettings)  => {
     const valid = requestEntries.some(([key, v]) => {
       if (defKey === key && typeof(v) === type) {
         if (validator) {
-          return validator(v)
+          return validator(v as Primitive)
         }
         return true
       }
