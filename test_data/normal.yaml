@@ -1,10 +1,10 @@
 jobs:
   - cron: '* * * * * *'
     from:
-      use: 'https://github.com/aknow2/DEN/blob/main/test_data/test_from.ts'
+      use: 'https://raw.githubusercontent.com/aknow2/DEN/main/test_data/test_from.ts'
       params:
         key: 'my key'
     to:
-      use: 'https://github.com/aknow2/DEN/blob/main/test_data/test_to.ts'
+      use: 'https://raw.githubusercontent.com/aknow2/DEN/main/test_data/test_to.ts'
       params:
         message: '{message} + {result}'
