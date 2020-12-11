@@ -1,4 +1,4 @@
-import { PlaneObject } from "./interfaces.ts"
+import { PlaneObject } from "./action_interfaces.ts";
 
 
 const convert = (params: PlaneObject, fromParams: PlaneObject): PlaneObject => {
