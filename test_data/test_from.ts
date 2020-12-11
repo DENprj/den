@@ -1,4 +1,4 @@
-import { From, PlaneObject } from 'https://raw.githubusercontent.com/aknow2/DEN/main/src/action_interfaces.ts';
+import { From, PlaneObject } from '../src/action_interfaces.ts';
 
 interface Req extends PlaneObject {
   key: string

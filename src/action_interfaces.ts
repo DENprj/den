@@ -6,8 +6,9 @@ export interface PlaneObject {
 
 interface Param {
   description: string;
-  type: 'string' | 'boolean' | 'number' | 'object';
+  type: 'string' | 'boolean' | 'number' | 'object' | 'bigint';
   optional?: boolean
+  default?: Primitive
 }
 
 export type Response<T extends PlaneObject> = {
