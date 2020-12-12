@@ -24,7 +24,7 @@ export type  Request<T extends PlaneObject> =  {
 export interface From<T extends PlaneObject, R extends PlaneObject> {
   request: Request<T>;
   response: Response<R>;
-  run: (param: T) => R | Promise<R> | undefined | null;
+  run: (param: T) => R | undefined | null | Promise<R | null | void> ;
 }
 
 export interface To<T extends PlaneObject> {
