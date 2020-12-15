@@ -6,7 +6,8 @@ const validateRequest = (req: Request<any>, params: PlaneObject) => {
   const requestEntries = Object.entries(params)
   Object
     .entries(req)
-    .forEach(([defKey, { validator, type, optional }]) => {
+    .forEach(([defKey, payload]) => {
+      const{ validator, type, optional } = payload 
       const valid = requestEntries.some(([key, v]) => {
         if (defKey === key && typeof(v) === type) {
           if (validator) {
@@ -14,7 +15,7 @@ const validateRequest = (req: Request<any>, params: PlaneObject) => {
           }
           return true
         }
-        return !!optional
+        return !!optional || !!payload.default
       })
       if (!valid) {
         throw new Error(`${defKey} is not defined`)
