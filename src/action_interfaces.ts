@@ -1,4 +1,4 @@
-export type Primitive = undefined | string | number | boolean | null
+export type Primitive = undefined | string | number | boolean | null | object
 
 export interface PlaneObject {
   [k: string]: Primitive | PlaneObject | (Primitive | PlaneObject)[]
@@ -6,7 +6,7 @@ export interface PlaneObject {
 
 interface Param {
   description: string;
-  type: 'string' | 'boolean' | 'number' | 'object' | 'bigint';
+  type: 'string' | 'boolean' | 'number' | 'object' | 'bigint' | 'undefined';
   optional?: boolean
   default?: Primitive
 }
