@@ -17,7 +17,7 @@ export type Response<T extends PlaneObject> = {
 
 export type  Request<T extends PlaneObject> =  {
   [K in keyof T]: Param & {
-    validator?: (p: T[K]) => boolean
+    validator?: (p: T[K]) => string
   };
 }
 

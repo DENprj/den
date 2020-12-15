@@ -1,7 +1,9 @@
 import { PlaneObject } from "./action_interfaces.ts";
 
 export interface Settings {
-  jobs: Job[]
+  orders: {
+    [k in string]: Order
+  }
 }
 
 export interface ActionSettings {
@@ -9,9 +11,8 @@ export interface ActionSettings {
   params: PlaneObject
 }
 
-export interface Job {
+export interface Order {
   cron: string
-  name: string
   from: ActionSettings
   to: ActionSettings
 }

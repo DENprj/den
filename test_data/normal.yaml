@@ -1,10 +1,12 @@
-jobs:
-  - cron: '* * * * * *'
+orders:
+  test:
+    schedule:
+      cron: '* * * * * *'
     from:
-      use: '../test_data/test_from.ts'
+      use: '../../test_data/test_from.ts'
       params:
         key: 'my key'
     to:
-      use: '../test_data/test_to.ts'
+      use: '../../test_data/test_to.ts'
       params:
         message: '{message} + {result}'

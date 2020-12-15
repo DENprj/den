@@ -16,9 +16,11 @@ const loadSettings = async (config: LoadingConfig) => {
 }
 
 const buildJobScheduler = async (setting: Settings) => {
-  const runners = await setting.jobs.map(async (job) => {
+  const runners = await Object.entries(setting.orders).map(async ( [orderName , job]) => {
+    console.log(`build ${orderName} order`)
     const from = await buildFrom(job.from)
     const to =  await buildTo(job.to)
+    console.log(`build successful`)
     const suchedule = createSchedule(job.cron)
     return () => {
       suchedule(() => {

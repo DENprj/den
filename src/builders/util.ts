@@ -9,9 +9,13 @@ export const validateRequest = (req: Request<any>, params: PlaneObject) => {
       const valid = requestEntries.some(([key, v]) => {
         if (defKey === key && typeof(v) === type) {
           if (validator) {
-            return validator(v)
+            const errMsg = validator(v)
+            if (errMsg) {
+              console.error(errMsg)
+              return false;
+            }
           }
-          return true
+          return true;
         }
         return !!optional || !!payload.default
       })
