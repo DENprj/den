@@ -11,23 +11,23 @@ interface Param {
   default?: Primitive
 }
 
-export type Response<T extends PlaneObject> = {
+export type Response<T> = {
   [K in keyof T]: Param;
 }
 
-export type  Request<T extends PlaneObject> =  {
+export type  Request<T> =  {
   [K in keyof T]: Param & {
     validator?: (p: T[K]) => string
   };
 }
 
-export interface From<T extends PlaneObject, R extends PlaneObject> {
+export interface From<T, R> {
   request: Request<T>;
   response: Response<R>;
   run: (param: T) => R | undefined | null | Promise<R | null | void> ;
 }
 
-export interface To<T extends PlaneObject> {
+export interface To<T> {
   request: Request<T>;
   run: (param: T) => void;
 }
