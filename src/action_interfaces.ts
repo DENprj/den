@@ -17,7 +17,7 @@ export type Response<T> = {
 
 export type  Request<T> =  {
   [K in keyof T]: Param & {
-    validator?: (p: T[K]) => string
+    validator?: (p: T[K]) => string | undefined
   };
 }
 
