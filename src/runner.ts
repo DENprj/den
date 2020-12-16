@@ -15,13 +15,14 @@ const loadSettings = async (config: LoadingConfig) => {
   throw new Error('not found settings folder path')
 }
 
-const buildJobScheduler = async (setting: Settings) => {
-  const runners = await Object.entries(setting.orders).map(async ( [orderName , job]) => {
+const buildOrders = async (setting: Settings) => {
+  const runners = await Object.entries(setting.orders).map(async ( [orderName , order]) => {
     console.log(`build ${orderName} order`)
-    const from = await buildFrom(job.from)
-    const to =  await buildTo(job.to)
+    const from = await buildFrom(order.from)
+    const to =  await buildTo(order.to)
     console.log(`build successful`)
-    const suchedule = createSchedule(job.cron)
+    const suchedule = createSchedule(order.schedule)
+    console.log(`schedule ready`)
     return () => {
       suchedule(() => {
         from()
@@ -32,7 +33,7 @@ const buildJobScheduler = async (setting: Settings) => {
             return null
           })
           .then(() => {
-            console.log('done job')
+            console.log(`done ${orderName}`)
           })
       })
     }
@@ -43,7 +44,7 @@ const buildJobScheduler = async (setting: Settings) => {
 
 const run = async (config: LoadingConfig) => {
   const settings = await loadSettings(config);
-  const runners = settings.map(async (s) => await buildJobScheduler(s));
+  const runners = settings.map(async (s) => await buildOrders(s));
   (await runners).forEach(schedulers => {
     Promise
       .resolve(schedulers)

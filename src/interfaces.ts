@@ -11,8 +11,12 @@ export interface ActionSettings {
   params: PlaneObject
 }
 
+export interface Schedule {
+  cron?: string
+}
+
 export interface Order {
-  cron: string
+  schedule: Schedule
   from: ActionSettings
   to: ActionSettings
 }
