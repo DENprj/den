@@ -27,7 +27,7 @@ const buildOrders = async (setting: Settings) => {
       suchedule(() => {
         from()
           .then(result => {
-            if (result !== null || result !== undefined) {
+            if (result !== null && result !== undefined) {
               return to(result)
             }
             return null
